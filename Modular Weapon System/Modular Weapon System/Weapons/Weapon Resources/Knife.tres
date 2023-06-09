@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Handheld_Melee" load_steps=3 format=3 uid="uid://cpwh5wpx6wk8g"]
+
+[ext_resource type="Script" path="res://Modular Weapon System/classes/Handheld_Melee.gd" id="1_dxiqb"]
+[ext_resource type="PackedScene" uid="uid://b1depgsh4t564" path="res://Modular Weapon System/Weapons/Knife.tscn" id="2_rxmag"]
+
+[resource]
+script = ExtResource("1_dxiqb")
+melee_speed = 0.1
+weapon_name = "Knife"
+weapon_scene = ExtResource("2_rxmag")
+min_damage = 50
+max_damage = 55
+waight_modifier = 0.0
+sounds = {
+"key": "value"
+}

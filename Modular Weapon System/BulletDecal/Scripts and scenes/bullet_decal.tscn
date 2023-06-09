@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8q4u2qlgfhmq"]
+
+[ext_resource type="Texture2D" uid="uid://diy2wn7i441se" path="res://BulletDecal/BulletHole.png" id="1_xkrwx"]
+[ext_resource type="Texture2D" uid="uid://bg5700eup4lqm" path="res://BulletDecal/NormalMap.png" id="2_gu41t"]
+[ext_resource type="Script" path="res://BulletDecal/Scripts and scenes/bullet_decal.gd" id="3_cddek"]
+[ext_resource type="Texture2D" uid="uid://d3nciljnlovdt" path="res://BulletDecal/Scripts and scenes/Smoke_Texture.png" id="4_somke"]
+
+[sub_resource type="Gradient" id="Gradient_lrhbm"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.536585, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4qxd7"]
+gradient = SubResource("Gradient_lrhbm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jwntu"]
+direction = Vector3(0, -1, 0)
+spread = 22.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 3.0
+linear_accel_max = 1.0
+color_ramp = SubResource("GradientTexture1D_4qxd7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rwyb"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.0392157)
+albedo_texture = ExtResource("4_somke")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_0qjgv"]
+material = SubResource("StandardMaterial3D_2rwyb")
+size = Vector2(0.3, 0.3)
+
+[node name="BulletDecal" type="Decal"]
+size = Vector3(0.2, 0.2, 0.26)
+texture_albedo = ExtResource("1_xkrwx")
+texture_normal = ExtResource("2_gu41t")
+distance_fade_enabled = true
+script = ExtResource("3_cddek")
+
+[node name="BulletImpact" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11541, 0)
+transparency = 0.9
+cast_shadow = 0
+emitting = false
+amount = 45
+lifetime = 0.3
+one_shot = true
+speed_scale = 0.6
+explosiveness = 1.0
+fixed_fps = 60
+fract_delta = false
+visibility_aabb = AABB(-1, -1, -1, 1, 1, 1)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_jwntu")
+draw_pass_1 = SubResource("QuadMesh_0qjgv")

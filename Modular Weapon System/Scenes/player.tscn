@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=3 uid="uid://b2qmpfxb50kv4"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_qbtix"]
+[ext_resource type="Script" path="res://Scripts/State Machine Scripts/State_Machine.gd" id="2_r2f3r"]
+[ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Idle.gd" id="3_2u4d6"]
+[ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Run.gd" id="5_1k246"]
+[ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Walk.gd" id="6_2b5bk"]
+[ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Air.gd" id="6_4uygb"]
+[ext_resource type="Script" path="res://Modular Weapon System/Weapon System.gd" id="7_uv58e"]
+[ext_resource type="Resource" uid="uid://bhhjdg5asfbsx" path="res://Modular Weapon System/Weapons/Weapon Resources/Rifle.tres" id="8_b3lox"]
+[ext_resource type="Resource" uid="uid://t0d8iyr4b3eo" path="res://Modular Weapon System/Weapons/Weapon Resources/Pistol.tres" id="9_phj4s"]
+[ext_resource type="Resource" uid="uid://cpwh5wpx6wk8g" path="res://Modular Weapon System/Weapons/Weapon Resources/Knife.tres" id="10_3s6v2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22xdu"]
+albedo_color = Color(0.972549, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_k8klv"]
+material = SubResource("StandardMaterial3D_22xdu")
+size = Vector3(1, 1, 0.2)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_qbtix")
+head_path = NodePath("Head")
+camera_path = NodePath("Head/MainCamera")
+time_to_peak = 0.34
+jump_distance = 5.5
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xc2g5")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
+
+[node name="MainCamera" type="Camera3D" parent="Head"]
+
+[node name="Raycaster" type="RayCast3D" parent="Head/MainCamera"]
+target_position = Vector3(0, 0, -30)
+
+[node name="Hand" type="Node3D" parent="Head/MainCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30897, -1)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_r2f3r")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_2u4d6")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("6_2b5bk")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("5_1k246")
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("6_4uygb")
+
+[node name="Direciton" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_k8klv")
+
+[node name="SlideTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WeaponSystem" type="Node" parent="." node_paths=PackedStringArray("action_timer", "raycaster", "hand_node")]
+script = ExtResource("7_uv58e")
+action_timer = NodePath("ActionTimer")
+raycaster = NodePath("../Head/MainCamera/Raycaster")
+hand_node = NodePath("../Head/MainCamera/Hand")
+weapon_inventory = Array[Resource("res://Modular Weapon System/classes/Handheld_Weapon.gd")]([ExtResource("8_b3lox"), ExtResource("9_phj4s"), ExtResource("10_3s6v2")])
+
+[node name="ActionTimer" type="Timer" parent="WeaponSystem"]
+one_shot = true

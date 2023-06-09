@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Handheld_Gun" load_steps=4 format=3 uid="uid://t0d8iyr4b3eo"]
+
+[ext_resource type="PackedScene" uid="uid://b8q4u2qlgfhmq" path="res://BulletDecal/Scripts and scenes/bullet_decal.tscn" id="1_ipq10"]
+[ext_resource type="Script" path="res://Modular Weapon System/classes/Handheld_Gun.gd" id="1_ivwjm"]
+[ext_resource type="PackedScene" uid="uid://i0u2p4an5jo5" path="res://Modular Weapon System/Weapons/pistol.tscn" id="2_42yhb"]
+
+[resource]
+script = ExtResource("1_ivwjm")
+action_type = 2
+ammo_capacity = 35
+magazine_max = 8
+current_magazine = 8
+rpm = 500
+reload_speed = 2.0
+bullet_decal = ExtResource("1_ipq10")
+weapon_name = "Pistol"
+weapon_scene = ExtResource("2_42yhb")
+min_damage = 15
+max_damage = 20
+waight_modifier = 0.0
+sounds = {
+"key": "value"
+}
