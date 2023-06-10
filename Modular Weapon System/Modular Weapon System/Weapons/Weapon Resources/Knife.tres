@@ -11,6 +11,3 @@ weapon_scene = ExtResource("2_rxmag")
 min_damage = 50
 max_damage = 55
 waight_modifier = 0.0
-sounds = {
-"key": "value"
-}

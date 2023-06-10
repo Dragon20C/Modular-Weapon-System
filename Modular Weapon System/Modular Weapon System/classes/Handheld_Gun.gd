@@ -67,9 +67,9 @@ func on_enter():
 	rate_of_fire = 1.0 / (rpm / 60.0)
 	weapon_system.action_timer.wait_time = rate_of_fire
 	animator.play("BringIn")
-	print("Bring gun in!")
+	print("Bring " + weapon_name + " in!")
 
 func on_exit():
 	# Play exit animations and clear up anything left
-	print("Putting gun away...")
+	print("Putting " + weapon_name + " away...")
 	animator.play("PutAway")

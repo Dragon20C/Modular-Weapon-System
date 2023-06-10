@@ -15,9 +15,9 @@ func on_enter():
 	# Play enter animations and maybe also set any variables
 	
 	animator.play("BringIn")
-	print("Bring melee weapon in!")
+	print("Bring " + weapon_name + " in!")
 
 func on_exit():
 	# Play exit animations and clear up anything left
-	print("Putting melee weapon away...")
+	print("Putting " + weapon_name + " away...")
 	animator.play("PutAway")
