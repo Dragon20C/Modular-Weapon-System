@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Gun_Data" load_steps=2 format=3 uid="uid://bfv6blwj53p3y"]
+
+[ext_resource type="Script" path="res://Weapon System/Data/Gun_Data.gd" id="1_7kfiu"]
+
+[resource]
+script = ExtResource("1_7kfiu")
+action_type = 1
+ammo_capacity = 90
+magazine_max = 30
+rpm = 700.0
+reload_speed = 3.0
+weapon_name = "Rifle"
+min_damage = 25
+max_damage = 30
+waight_modifier = 20.0

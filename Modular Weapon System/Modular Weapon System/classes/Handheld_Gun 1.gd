@@ -1,5 +1,5 @@
-class_name Handheld_Gun
-extends Handheld_Weapon
+class_name Gun_0000
+extends Weapon
 
 
 @export_group("Gun")

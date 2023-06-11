@@ -5,9 +5,9 @@ extends Node
 @export var raycaster : RayCast3D
 
 @export var hand_node : Node3D
-@export var weapon_inventory : Array[Handheld_Weapon]
+#@export var weapon_inventory : Array[Handheld_Weapon]
 var inventory_index = 0
-var current_weapon : Handheld_Weapon
+#var current_weapon : Handheld_Weapon
 
 # This script will hold the weapons and do the switching of weapons and drop and pick ups as well.
 

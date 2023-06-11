@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Gun_Data" load_steps=2 format=3 uid="uid://u7uwsxr8lalm"]
+
+[ext_resource type="Script" path="res://Weapon System/Data/Gun_Data.gd" id="1_8oc5j"]
+
+[resource]
+script = ExtResource("1_8oc5j")
+action_type = 2
+ammo_capacity = 38
+magazine_max = 8
+rpm = 700.0
+reload_speed = 1.5
+weapon_name = "Pistol"
+min_damage = 15
+max_damage = 20
+waight_modifier = 5.0
