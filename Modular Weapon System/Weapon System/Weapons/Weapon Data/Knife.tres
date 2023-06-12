@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Melee_Data" load_steps=2 format=3 uid="uid://bb8uhgfnou75s"]
+
+[ext_resource type="Script" path="res://Weapon System/Data/Melee_Data.gd" id="1_in5xy"]
+
+[resource]
+script = ExtResource("1_in5xy")
+melee_speed = 10.0
+weapon_name = "Knife"
+min_damage = 50
+max_damage = 60
+waight_modifier = 0.0

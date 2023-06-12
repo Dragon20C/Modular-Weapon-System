@@ -1,25 +1,26 @@
 class_name Weapon_Interface extends Node
 
-
-
+# Here we should store things multiple weapons could reuse like raycaster.
 @export var weapon_scene : PackedScene
+@export var _weapon_data : Weapon_Data
 @onready var weapon_system = get_parent().get_parent()
 @onready var raycaster : RayCast3D = weapon_system.raycaster
 var animator : AnimationPlayer
-#@onready var visual_node : Node3D = get_parent().get_parent().find_child("Visual_Node")
 
-# Use this to disable an action when needed for example reloading we dont want to shoot so disable it.
+# I can use these to disable a state to avoid doing multiple inputs when one is required.
+# Example when reloading, shooting shouldnt happen.
 var action_1_state : bool = true
 var action_2_state : bool = true
 var action_3_state : bool = true
 var action_4_state : bool = true
 
+# Can use the ready function to set up variables that change dynamicly.
+# Example a guns current ammo count.
 func _ready() -> void:
 	pass
 
-# These are input actions, each action should have a seperate input
-# Example guns would have a shoot, reload and aim.
-
+# These actions are what allows the weapon to have Input.
+# Currently only have 4 but if a weapon needs more I can just add more.
 func Action_1() -> void:
 	if not action_1_state: return
 	

@@ -1,7 +1,6 @@
 class_name Gun_Interface extends Weapon_Interface
 
 @export var fire_timer : Timer
-@export var _weapon_data : Weapon_Data
 @onready var rate_of_fire : float = 1.0 / (_weapon_data.rpm / 60.0)
 @onready var current_magazine : int = _weapon_data.magazine_max
 var bullet_decal = preload("res://BulletDecal/Scripts and scenes/bullet_decal.tscn")
@@ -20,15 +19,7 @@ func Action_1() -> void:
 	
 func Action_2() -> void:
 	if not action_2_state: return
-	if Input.is_action_just_pressed("R_key"):
-		
-		print("reloading!")
-		action_2_state = false
-		action_1_state = false
-		await get_tree().create_timer(_weapon_data.reload_speed).timeout.connect(
-			func state():
-			action_1_state = true
-			action_2_state = true)
+	reload()
 	
 func Action_3() -> void:
 	if not action_3_state: return
@@ -37,12 +28,30 @@ func Action_4() -> void:
 	if not action_4_state: return
 
 func shoot():
-	fire_timer.start()
-	animator.seek(0)
-	animator.play("Shoot")
-	print("Bang!")
-	if raycaster.is_colliding():
-		spawn_decal(raycaster.get_collision_point(),raycaster.get_collision_normal())
+	if current_magazine > 0:
+		current_magazine -= 1
+		fire_timer.start()
+		animator.seek(0)
+		animator.play("Shoot")
+		print("Bang!")
+		print(current_magazine)
+		if raycaster.is_colliding():
+			spawn_decal(raycaster.get_collision_point(),raycaster.get_collision_normal())
+
+func reload():
+	if current_magazine == _weapon_data.magazine_max: return
+	if Input.is_action_just_pressed("R_key"):
+		print("reloading!")
+		action_2_state = false
+		action_1_state = false
+		await get_tree().create_timer(_weapon_data.reload_speed).timeout.connect(replenish_ammo)
+		
+
+func replenish_ammo():
+	action_1_state = true
+	action_2_state = true
+	print("reload finished!")
+	current_magazine = _weapon_data.magazine_max
 
 func spawn_decal(position: Vector3, normal: Vector3):
 	var decal = bullet_decal.instantiate()

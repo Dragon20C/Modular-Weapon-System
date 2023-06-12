@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Run.gd" id="5_1k246"]
 [ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Walk.gd" id="6_2b5bk"]
 [ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Air.gd" id="6_4uygb"]
-[ext_resource type="PackedScene" uid="uid://bk7mg0f0l0mkk" path="res://Weapon System/node_weapon_system.tscn" id="7_3c4n7"]
+[ext_resource type="PackedScene" uid="uid://bk7mg0f0l0mkk" path="res://Weapon System/weapon_system.tscn" id="7_3c4n7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -68,8 +68,8 @@ mesh = SubResource("PrismMesh_k8klv")
 [node name="SlideTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Node_Weapon_System" parent="." node_paths=PackedStringArray("hand_node", "raycaster") instance=ExtResource("7_3c4n7")]
+[node name="Weapon_System" parent="." node_paths=PackedStringArray("hand_node", "raycaster") instance=ExtResource("7_3c4n7")]
 hand_node = NodePath("../Head/MainCamera/Hand")
 raycaster = NodePath("../Head/MainCamera/Raycaster")
 
-[editable path="Node_Weapon_System"]
+[editable path="Weapon_System"]
