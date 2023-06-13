@@ -2,9 +2,10 @@ class_name Weapon_Interface extends Node
 
 # Here we should store things multiple weapons could reuse like raycaster.
 @export var weapon_scene : PackedScene
-@export var _weapon_data : Weapon_Data
+@export var weapon_data : Weapon_Data
 @onready var weapon_system = get_parent().get_parent()
 @onready var raycaster : RayCast3D = weapon_system.raycaster
+var audio_player : AudioStreamPlayer3D
 var animator : AnimationPlayer
 
 # I can use these to disable a state to avoid doing multiple inputs when one is required.

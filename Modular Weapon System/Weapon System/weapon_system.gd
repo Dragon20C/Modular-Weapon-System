@@ -2,26 +2,54 @@ class_name Weapon_System extends Node3D
 
 # Can store variables from the player here and transfer to the weapons if needed.
 @export var hand_node : Node3D
+@onready var hand_animations : AnimationPlayer = get_node("AnimationPlayer")
 @export var raycaster : RayCast3D
 # Get available children from the weapons node.
 var weapons : Array
 # Set the first child to current weapon.
 var current_weapon : Node
+var weapon_index : int = 0
+var disable_actions : bool = false
+
 
 func _ready():
 	weapons = get_node("Weapons").get_children()
-	current_weapon = weapons[0]
-	instantiate_weapon_scene(current_weapon.weapon_scene)
+	switch_weapon(weapons[weapon_index])
 	
-func _physics_process(delta):
+func _input(event):
+	if event.is_action_pressed("Scroll_up") and not disable_actions:
+		weapon_index = min(weapon_index+1,weapons.size()-1)
+		switch_weapon(weapons[weapon_index])
+
+	elif event.is_action_pressed("Scroll_down") and not disable_actions:
+		weapon_index = max(weapon_index-1,0)
+		switch_weapon(weapons[weapon_index])
+	
+func _physics_process(_delta):
 	if current_weapon == null : return
 	
 	# Call actions for the current weapon
-	current_weapon.Action_1()
-	current_weapon.Action_2()
-	current_weapon.Action_3()
-	current_weapon.Action_4()
+	if not disable_actions:
+		current_weapon.Action_1()
+		current_weapon.Action_2()
+		current_weapon.Action_3()
+		current_weapon.Action_4()
 
+func switch_weapon(weapon : Weapon_Interface):
+	if current_weapon == weapon: return
+	disable_actions = true
+	
+	if current_weapon != null:
+		hand_animations.play("Unequip_weapon")
+		await hand_animations.animation_finished
+		hand_node.get_child(0).queue_free()
+		
+	current_weapon = weapon
+	instantiate_weapon_scene(current_weapon.weapon_scene)
+	hand_animations.play("Equip_weapon")
+	await hand_animations.animation_finished
+	disable_actions = false
+	
 func instantiate_weapon_scene(weapon : PackedScene):
 	var instantiated_scene = weapon.instantiate()
 	# Hand node is the visual node for the models.

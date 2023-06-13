@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2qmpfxb50kv4"]
+[gd_scene load_steps=13 format=3 uid="uid://b2qmpfxb50kv4"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_qbtix"]
 [ext_resource type="Script" path="res://Scripts/State Machine Scripts/State_Machine.gd" id="2_r2f3r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Walk.gd" id="6_2b5bk"]
 [ext_resource type="Script" path="res://Scripts/State Machine Scripts/Player States/Air.gd" id="6_4uygb"]
 [ext_resource type="PackedScene" uid="uid://bk7mg0f0l0mkk" path="res://Weapon System/weapon_system.tscn" id="7_3c4n7"]
+[ext_resource type="AnimationLibrary" uid="uid://c2nwbv6clh5m4" path="res://Weapon System/SwitchAnimations.res" id="8_ya7uk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -43,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67939, 0)
 target_position = Vector3(0, 0, -30)
 
 [node name="Hand" type="Node3D" parent="Head/MainCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30897, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.401, -0.233, -1)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_r2f3r")
@@ -71,5 +72,10 @@ one_shot = true
 [node name="Weapon_System" parent="." node_paths=PackedStringArray("hand_node", "raycaster") instance=ExtResource("7_3c4n7")]
 hand_node = NodePath("../Head/MainCamera/Hand")
 raycaster = NodePath("../Head/MainCamera/Raycaster")
+
+[node name="AnimationPlayer" parent="Weapon_System" index="1"]
+libraries = {
+"": ExtResource("8_ya7uk")
+}
 
 [editable path="Weapon_System"]

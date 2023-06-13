@@ -1,8 +1,8 @@
 class_name Gun_Interface extends Weapon_Interface
 
 @export var fire_timer : Timer
-@onready var rate_of_fire : float = 1.0 / (_weapon_data.rpm / 60.0)
-@onready var current_magazine : int = _weapon_data.magazine_max
+@onready var rate_of_fire : float = 1.0 / (weapon_data.rpm / 60.0)
+@onready var current_magazine : int = weapon_data.magazine_max
 var bullet_decal = preload("res://BulletDecal/Scripts and scenes/bullet_decal.tscn")
 
 func _ready() -> void:
@@ -10,16 +10,17 @@ func _ready() -> void:
 
 func Action_1() -> void:
 	if not action_1_state: return
-	if _weapon_data.action_type == 1:
+	if weapon_data.action_type == 1:
 		if Input.is_action_pressed("Left_Click") and fire_timer.is_stopped():
 			shoot()
-	elif _weapon_data.action_type == 2:
+	elif weapon_data.action_type == 2:
 		if Input.is_action_just_pressed("Left_Click") and fire_timer.is_stopped():
 			shoot()
 	
 func Action_2() -> void:
 	if not action_2_state: return
-	reload()
+	if Input.is_action_just_pressed("R_key"):
+		reload()
 	
 func Action_3() -> void:
 	if not action_3_state: return
@@ -37,21 +38,23 @@ func shoot():
 		print(current_magazine)
 		if raycaster.is_colliding():
 			spawn_decal(raycaster.get_collision_point(),raycaster.get_collision_normal())
+	else:
+		reload()
 
 func reload():
-	if current_magazine == _weapon_data.magazine_max: return
-	if Input.is_action_just_pressed("R_key"):
-		print("reloading!")
-		action_2_state = false
-		action_1_state = false
-		await get_tree().create_timer(_weapon_data.reload_speed).timeout.connect(replenish_ammo)
-		
+	if current_magazine == weapon_data.magazine_max: return
+	print("reloading!")
+	animator.play("Reload")
+	action_2_state = false
+	action_1_state = false
+	await animator.animation_finished
+	replenish_ammo()
 
 func replenish_ammo():
 	action_1_state = true
 	action_2_state = true
 	print("reload finished!")
-	current_magazine = _weapon_data.magazine_max
+	current_magazine = weapon_data.magazine_max
 
 func spawn_decal(position: Vector3, normal: Vector3):
 	var decal = bullet_decal.instantiate()
