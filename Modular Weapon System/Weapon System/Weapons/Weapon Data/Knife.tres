@@ -9,3 +9,4 @@ weapon_name = "Knife"
 min_damage = 50
 max_damage = 60
 waight_modifier = 0.0
+transition_speed = 2.0

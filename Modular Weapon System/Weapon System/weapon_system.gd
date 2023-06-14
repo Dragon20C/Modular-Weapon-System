@@ -40,12 +40,14 @@ func switch_weapon(weapon : Weapon_Interface):
 	disable_actions = true
 	
 	if current_weapon != null:
+		hand_animations.speed_scale = current_weapon.weapon_data.transition_speed
 		hand_animations.play("Unequip_weapon")
 		await hand_animations.animation_finished
 		hand_node.get_child(0).queue_free()
 		
 	current_weapon = weapon
 	instantiate_weapon_scene(current_weapon.weapon_scene)
+	hand_animations.speed_scale = current_weapon.weapon_data.transition_speed
 	hand_animations.play("Equip_weapon")
 	await hand_animations.animation_finished
 	disable_actions = false

@@ -13,3 +13,4 @@ weapon_name = "Rifle"
 min_damage = 25
 max_damage = 30
 waight_modifier = 20.0
+transition_speed = 0.9
