@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://Weapon System/weapon_system.gd" id="1_vtniw"]
 [ext_resource type="Script" path="res://Weapon System/Weapon_Interfaces/Gun_Interface.gd" id="2_20enq"]
-[ext_resource type="PackedScene" uid="uid://bwjc61n5pgxem" path="res://Weapon System/Weapons/Scenes/rifle.tscn" id="3_oteb4"]
+[ext_resource type="PackedScene" uid="uid://bwjc61n5pgxem" path="res://Weapon System/Weapons/Scenes Model/rifle.tscn" id="3_8wq2i"]
 [ext_resource type="Resource" uid="uid://bfv6blwj53p3y" path="res://Weapon System/Weapons/Weapon Data/Rifle.tres" id="4_wj31u"]
 [ext_resource type="Script" path="res://Weapon System/Weapon_Interfaces/Melee_Interface.gd" id="5_6hlka"]
-[ext_resource type="PackedScene" uid="uid://i0u2p4an5jo5" path="res://Weapon System/Weapons/Scenes/pistol.tscn" id="5_tbyxs"]
+[ext_resource type="PackedScene" uid="uid://i0u2p4an5jo5" path="res://Weapon System/Weapons/Scenes Model/pistol.tscn" id="5_ef050"]
 [ext_resource type="Resource" uid="uid://u7uwsxr8lalm" path="res://Weapon System/Weapons/Weapon Data/Pistol.tres" id="6_76shx"]
-[ext_resource type="PackedScene" uid="uid://b1depgsh4t564" path="res://Weapon System/Weapons/Scenes/Knife.tscn" id="6_mniyr"]
 [ext_resource type="Resource" uid="uid://bb8uhgfnou75s" path="res://Weapon System/Weapons/Weapon Data/Knife.tres" id="7_gg4fk"]
+[ext_resource type="PackedScene" uid="uid://b1depgsh4t564" path="res://Weapon System/Weapons/Scenes Model/Knife.tscn" id="8_jbixd"]
 [ext_resource type="AnimationLibrary" uid="uid://c2nwbv6clh5m4" path="res://Weapon System/SwitchAnimations.res" id="10_rekav"]
 
 [node name="Weapon_System" type="Node3D"]
@@ -16,27 +16,27 @@ script = ExtResource("1_vtniw")
 
 [node name="Weapons" type="Node3D" parent="."]
 
-[node name="Gun_Interface" type="Node" parent="Weapons" node_paths=PackedStringArray("fire_timer")]
+[node name="Rifle" type="Node" parent="Weapons" node_paths=PackedStringArray("fire_timer")]
 script = ExtResource("2_20enq")
 fire_timer = NodePath("Timer")
-weapon_scene = ExtResource("3_oteb4")
+weapon_scene = ExtResource("3_8wq2i")
 weapon_data = ExtResource("4_wj31u")
 
-[node name="Timer" type="Timer" parent="Weapons/Gun_Interface"]
+[node name="Timer" type="Timer" parent="Weapons/Rifle"]
 one_shot = true
 
-[node name="Gun_Interface2" type="Node" parent="Weapons" node_paths=PackedStringArray("fire_timer")]
+[node name="Pistol" type="Node" parent="Weapons" node_paths=PackedStringArray("fire_timer")]
 script = ExtResource("2_20enq")
 fire_timer = NodePath("Timer")
-weapon_scene = ExtResource("5_tbyxs")
+weapon_scene = ExtResource("5_ef050")
 weapon_data = ExtResource("6_76shx")
 
-[node name="Timer" type="Timer" parent="Weapons/Gun_Interface2"]
+[node name="Timer" type="Timer" parent="Weapons/Pistol"]
 one_shot = true
 
-[node name="Melee_Interface" type="Node" parent="Weapons"]
+[node name="Knife" type="Node" parent="Weapons"]
 script = ExtResource("5_6hlka")
-weapon_scene = ExtResource("6_mniyr")
+weapon_scene = ExtResource("8_jbixd")
 weapon_data = ExtResource("7_gg4fk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

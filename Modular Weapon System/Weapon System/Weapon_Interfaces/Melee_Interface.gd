@@ -1,16 +1,16 @@
 class_name Melee_Interface extends Weapon_Interface
 
 
-
 func _ready() -> void:
 	pass
 
 func Action_1() -> void:
 	if not action_1_state: return
 	
-	if Input.is_action_just_pressed("Left_Click"):
-		animator.seek(0)
-		animator.play("Slash")
+	if Input.is_action_just_pressed("Left_Click") and not animator.is_playing():
+		var list_of_animations = animator.get_animation_list()
+		var choice = randi_range(0,list_of_animations.size() - 1)
+		animator.play(list_of_animations[choice])
 		print("STAB!")
 	
 func Action_2() -> void:
