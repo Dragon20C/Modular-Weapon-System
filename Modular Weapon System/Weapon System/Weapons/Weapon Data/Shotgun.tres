@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Gun_Data" load_steps=2 format=3 uid="uid://cp6ib0r2ibliw"]
+
+[ext_resource type="Script" path="res://Weapon System/Data/Gun_Data.gd" id="1_60mv3"]
+
+[resource]
+script = ExtResource("1_60mv3")
+action_type = 4
+ammo_capacity = 48
+magazine_max = 8
+rpm = 0.0
+reload_speed = 1.6
+max_range = 30
+pellets = 8
+spread_angle = 2.0
+weapon_name = "Shotgun"
+min_damage = 20
+max_damage = 30
+waight_modifier = 0.0
+transition_speed = 1.4

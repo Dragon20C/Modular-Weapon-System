@@ -6,16 +6,21 @@ class_name Gun_Interface extends Weapon_Interface
 var bullet_decal = preload("res://BulletDecal/Scripts and scenes/bullet_decal.tscn")
 
 func _ready() -> void:
+	randomize()
 	fire_timer.wait_time = rate_of_fire
 
 func Action_1() -> void:
 	if not action_1_state: return
+	
 	if weapon_data.action_type == 1:
 		if Input.is_action_pressed("Left_Click") and fire_timer.is_stopped():
 			shoot()
 	elif weapon_data.action_type == 2:
 		if Input.is_action_just_pressed("Left_Click") and fire_timer.is_stopped():
 			shoot()
+	elif weapon_data.action_type == 4:
+		if Input.is_action_just_pressed("Left_Click") and not animator.is_playing():
+			shotgun_shoot()
 	
 func Action_2() -> void:
 	if not action_2_state: return
@@ -34,14 +39,30 @@ func shoot():
 		fire_timer.start()
 		animator.seek(0)
 		animator.play("Shoot")
-		print("Bang!")
 		print(current_magazine)
+		raycaster.force_raycast_update()
 		if raycaster.is_colliding():
 			spawn_decal(raycaster.get_collision_point(),raycaster.get_collision_normal())
 	else:
 		reload()
 
+func shotgun_shoot():
+	if current_magazine > 0:
+		animator.play("Shoot")
+		current_magazine -= 1
+		print(current_magazine)
+		var angle = weapon_data.spread_angle
+		for pellet in weapon_data.pellets:
+			var spread : Vector2 = Vector2(randi_range(-angle,angle),randi_range(-angle,angle))
+			raycaster.rotate_x(deg_to_rad(spread.x))
+			raycaster.rotate_y(deg_to_rad(spread.y))
+			raycaster.force_raycast_update()
+			if raycaster.is_colliding():
+				spawn_decal(raycaster.get_collision_point(),raycaster.get_collision_normal())
+		raycaster.rotation = Vector3.ZERO
+	
 func reload():
+	weapon_system.disable_actions = true
 	if current_magazine == weapon_data.magazine_max: return
 	print("reloading!")
 	animator.play("Reload")
@@ -49,6 +70,7 @@ func reload():
 	action_1_state = false
 	await animator.animation_finished
 	replenish_ammo()
+	weapon_system.disable_actions = false
 
 func replenish_ammo():
 	action_1_state = true

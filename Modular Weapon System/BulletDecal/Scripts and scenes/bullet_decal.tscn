@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://d3nciljnlovdt" path="res://BulletDecal/Scripts and scenes/Smoke_Texture.png" id="4_somke"]
 
 [sub_resource type="Gradient" id="Gradient_lrhbm"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.536585, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4qxd7"]
@@ -17,7 +15,7 @@ gradient = SubResource("Gradient_lrhbm")
 direction = Vector3(0, -1, 0)
 spread = 22.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_max = 3.0
+initial_velocity_max = 4.0
 linear_accel_max = 1.0
 color_ramp = SubResource("GradientTexture1D_4qxd7")
 

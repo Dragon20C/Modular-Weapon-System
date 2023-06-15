@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bk7mg0f0l0mkk"]
+[gd_scene load_steps=16 format=3 uid="uid://bk7mg0f0l0mkk"]
 
 [ext_resource type="Script" path="res://Weapon System/weapon_system.gd" id="1_vtniw"]
 [ext_resource type="Script" path="res://Weapon System/Weapon_Interfaces/Gun_Interface.gd" id="2_20enq"]
@@ -6,13 +6,107 @@
 [ext_resource type="Resource" uid="uid://bfv6blwj53p3y" path="res://Weapon System/Weapons/Weapon Data/Rifle.tres" id="4_wj31u"]
 [ext_resource type="Script" path="res://Weapon System/Weapon_Interfaces/Melee_Interface.gd" id="5_6hlka"]
 [ext_resource type="PackedScene" uid="uid://i0u2p4an5jo5" path="res://Weapon System/Weapons/Scenes Model/pistol.tscn" id="5_ef050"]
+[ext_resource type="PackedScene" uid="uid://4wuri7togol5" path="res://Weapon System/Weapons/Scenes Model/Shotgun.tscn" id="5_rjs8j"]
+[ext_resource type="Resource" uid="uid://cp6ib0r2ibliw" path="res://Weapon System/Weapons/Weapon Data/Shotgun.tres" id="6_0dame"]
 [ext_resource type="Resource" uid="uid://u7uwsxr8lalm" path="res://Weapon System/Weapons/Weapon Data/Pistol.tres" id="6_76shx"]
 [ext_resource type="Resource" uid="uid://bb8uhgfnou75s" path="res://Weapon System/Weapons/Weapon Data/Knife.tres" id="7_gg4fk"]
 [ext_resource type="PackedScene" uid="uid://b1depgsh4t564" path="res://Weapon System/Weapons/Scenes Model/Knife.tscn" id="8_jbixd"]
-[ext_resource type="AnimationLibrary" uid="uid://c2nwbv6clh5m4" path="res://Weapon System/SwitchAnimations.res" id="10_rekav"]
+
+[sub_resource type="Animation" id="Animation_1175i"]
+resource_name = "Equip_weapon"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1, 0), Vector3(0.35, -0.2, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.436332, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0ynmt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.35, -0.2, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mkkok"]
+resource_name = "Unequip_weapon"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.35, -0.2, -1), Vector3(0, -1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.436332, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5o3h"]
+_data = {
+"Equip_weapon": SubResource("Animation_1175i"),
+"RESET": SubResource("Animation_0ynmt"),
+"Unequip_weapon": SubResource("Animation_mkkok")
+}
 
 [node name="Weapon_System" type="Node3D"]
 script = ExtResource("1_vtniw")
+
+[node name="Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.2, -1)
 
 [node name="Weapons" type="Node3D" parent="."]
 
@@ -23,6 +117,15 @@ weapon_scene = ExtResource("3_8wq2i")
 weapon_data = ExtResource("4_wj31u")
 
 [node name="Timer" type="Timer" parent="Weapons/Rifle"]
+one_shot = true
+
+[node name="Shotgun" type="Node" parent="Weapons" node_paths=PackedStringArray("fire_timer")]
+script = ExtResource("2_20enq")
+fire_timer = NodePath("Timer")
+weapon_scene = ExtResource("5_rjs8j")
+weapon_data = ExtResource("6_0dame")
+
+[node name="Timer" type="Timer" parent="Weapons/Shotgun"]
 one_shot = true
 
 [node name="Pistol" type="Node" parent="Weapons" node_paths=PackedStringArray("fire_timer")]
@@ -41,5 +144,5 @@ weapon_data = ExtResource("7_gg4fk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"SwitchAnimations": ExtResource("10_rekav")
+"": SubResource("AnimationLibrary_t5o3h")
 }

@@ -1,7 +1,7 @@
 class_name Weapon_System extends Node3D
 
 # Can store variables from the player here and transfer to the weapons if needed.
-@export var hand_node : Node3D
+@onready var hand_node : Node3D = get_node("Hand")
 @onready var hand_animations : AnimationPlayer = get_node("AnimationPlayer")
 @export var raycaster : RayCast3D
 # Get available children from the weapons node.
