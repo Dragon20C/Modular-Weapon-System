@@ -1,4 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://bwjc61n5pgxem"]
+[gd_scene load_steps=27 format=3 uid="uid://bwjc61n5pgxem"]
+
+[ext_resource type="PackedScene" uid="uid://b7lywgo3pfbrf" path="res://Textures/muzzle_flash.tscn" id="1_046il"]
 
 [sub_resource type="Animation" id="Animation_t8i3c"]
 length = 0.001
@@ -61,6 +63,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Main/MuzzleFlash:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ddxom"]
@@ -153,6 +167,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.237696, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/MuzzleFlash:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5lry3"]
@@ -426,3 +452,6 @@ skeleton = NodePath("")
 transform = Transform3D(0.027937, 0, 0, 0, 0.027937, 0, 0, 0, 0.00829909, 0, -0.128137, 0.310953)
 mesh = SubResource("ArrayMesh_2hvf8")
 skeleton = NodePath("")
+
+[node name="MuzzleFlash" parent="Main" instance=ExtResource("1_046il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.906566)

@@ -413,3 +413,4 @@ environment = SubResource("Environment_lwlyd")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.925352, -0.0102492, 0.37897, -0.373887, 0.140678, 0.916744, -0.0627085, -0.990002, 0.126344, 0, 6, 0)
 shadow_enabled = true
+shadow_opacity = 0.32
