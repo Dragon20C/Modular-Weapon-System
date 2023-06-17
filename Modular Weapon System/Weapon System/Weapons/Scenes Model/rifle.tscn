@@ -412,6 +412,9 @@ shadow_mesh = SubResource("ArrayMesh_5ya6o")
 
 [node name="Rifle" type="Node3D"]
 
+[node name="SoundPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.863964)
+
 [node name="Animations" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5lry3")

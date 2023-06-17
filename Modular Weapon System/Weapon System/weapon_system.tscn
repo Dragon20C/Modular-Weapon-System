@@ -1,16 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://bk7mg0f0l0mkk"]
+[gd_scene load_steps=20 format=3 uid="uid://bk7mg0f0l0mkk"]
 
 [ext_resource type="Script" path="res://Weapon System/weapon_system.gd" id="1_vtniw"]
 [ext_resource type="Script" path="res://Weapon System/Weapon_Interfaces/Gun_Interface.gd" id="2_20enq"]
 [ext_resource type="PackedScene" uid="uid://bwjc61n5pgxem" path="res://Weapon System/Weapons/Scenes Model/rifle.tscn" id="3_8wq2i"]
 [ext_resource type="Resource" uid="uid://bfv6blwj53p3y" path="res://Weapon System/Weapons/Weapon Data/Rifle.tres" id="4_wj31u"]
+[ext_resource type="AudioStream" uid="uid://cc20b4gvelu1d" path="res://Sounds/Rifle_1.wav" id="5_1wmrj"]
 [ext_resource type="Script" path="res://Weapon System/Weapon_Interfaces/Melee_Interface.gd" id="5_6hlka"]
 [ext_resource type="PackedScene" uid="uid://i0u2p4an5jo5" path="res://Weapon System/Weapons/Scenes Model/pistol.tscn" id="5_ef050"]
+[ext_resource type="AudioStream" uid="uid://cw6do1esp4cu6" path="res://Sounds/Pistol_1.wav" id="5_emgwn"]
 [ext_resource type="PackedScene" uid="uid://4wuri7togol5" path="res://Weapon System/Weapons/Scenes Model/Shotgun.tscn" id="5_rjs8j"]
+[ext_resource type="AudioStream" uid="uid://euyerjup2226" path="res://Sounds/Knife_1_Single.wav" id="5_u3oao"]
 [ext_resource type="Resource" uid="uid://cp6ib0r2ibliw" path="res://Weapon System/Weapons/Weapon Data/Shotgun.tres" id="6_0dame"]
 [ext_resource type="Resource" uid="uid://u7uwsxr8lalm" path="res://Weapon System/Weapons/Weapon Data/Pistol.tres" id="6_76shx"]
 [ext_resource type="Resource" uid="uid://bb8uhgfnou75s" path="res://Weapon System/Weapons/Weapon Data/Knife.tres" id="7_gg4fk"]
 [ext_resource type="PackedScene" uid="uid://b1depgsh4t564" path="res://Weapon System/Weapons/Scenes Model/Knife.tscn" id="8_jbixd"]
+[ext_resource type="AudioStream" uid="uid://cltyrva5y7qmr" path="res://Sounds/Shotgun_1.wav" id="8_vejwd"]
 
 [sub_resource type="Animation" id="Animation_1175i"]
 resource_name = "Equip_weapon"
@@ -115,6 +119,9 @@ script = ExtResource("2_20enq")
 fire_timer = NodePath("Timer")
 weapon_scene = ExtResource("3_8wq2i")
 weapon_data = ExtResource("4_wj31u")
+sounds = {
+"Shoot": ExtResource("5_1wmrj")
+}
 
 [node name="Timer" type="Timer" parent="Weapons/Rifle"]
 one_shot = true
@@ -124,6 +131,9 @@ script = ExtResource("2_20enq")
 fire_timer = NodePath("Timer")
 weapon_scene = ExtResource("5_rjs8j")
 weapon_data = ExtResource("6_0dame")
+sounds = {
+"Shoot": ExtResource("8_vejwd")
+}
 
 [node name="Timer" type="Timer" parent="Weapons/Shotgun"]
 one_shot = true
@@ -133,6 +143,9 @@ script = ExtResource("2_20enq")
 fire_timer = NodePath("Timer")
 weapon_scene = ExtResource("5_ef050")
 weapon_data = ExtResource("6_76shx")
+sounds = {
+"Shoot": ExtResource("5_emgwn")
+}
 
 [node name="Timer" type="Timer" parent="Weapons/Pistol"]
 one_shot = true
@@ -141,6 +154,9 @@ one_shot = true
 script = ExtResource("5_6hlka")
 weapon_scene = ExtResource("8_jbixd")
 weapon_data = ExtResource("7_gg4fk")
+sounds = {
+"Slash": ExtResource("5_u3oao")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

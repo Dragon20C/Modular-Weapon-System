@@ -490,3 +490,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00788428, -0.486379)
 libraries = {
 "": SubResource("AnimationLibrary_vx8pk")
 }
+
+[node name="SoundPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.487818)

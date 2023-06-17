@@ -348,3 +348,6 @@ skeleton = NodePath("")
 
 [node name="MuzzleFlash" parent="Main" instance=ExtResource("1_ga1l6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.575677)
+
+[node name="SoundPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.863964)

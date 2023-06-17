@@ -58,3 +58,4 @@ func instantiate_weapon_scene(weapon : PackedScene):
 	hand_node.add_child(instantiated_scene)
 	# Set the animationplayer from the scene to the current weapon.
 	current_weapon.animator = instantiated_scene.get_node("Animations")
+	current_weapon.sound_position = instantiated_scene.get_node("SoundPosition")

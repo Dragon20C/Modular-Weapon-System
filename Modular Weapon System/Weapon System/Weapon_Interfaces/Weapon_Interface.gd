@@ -5,8 +5,10 @@ class_name Weapon_Interface extends Node
 @export var weapon_data : Weapon_Data
 @onready var weapon_system = get_parent().get_parent()
 @onready var raycaster : RayCast3D = weapon_system.raycaster
-var audio_player : AudioStreamPlayer3D
+@export var sounds : Dictionary
+var sound_position : Marker3D
 var animator : AnimationPlayer
+
 
 # I can use these to disable a state to avoid doing multiple inputs when one is required.
 # Example when reloading, shooting shouldnt happen.

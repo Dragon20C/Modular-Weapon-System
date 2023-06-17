@@ -2,6 +2,33 @@
 
 [ext_resource type="PackedScene" uid="uid://bgn24ib5lntyg" path="res://Weapon Models/Knife.glb" id="1_l7prs"]
 
+[sub_resource type="Animation" id="Animation_uev4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Knife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.146244, 0, -0.0436676)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Knife:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0733554, 1.31742, 1.08817)]
+}
+
 [sub_resource type="Animation" id="Animation_l2ju4"]
 resource_name = "slash_1"
 length = 0.8
@@ -28,33 +55,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.0733554, 1.31742, 1.08817), Vector3(0.0733553, 1.79241, 1.08817), Vector3(0.0733554, 0.512219, 1.08817), Vector3(0.0733554, 0.448772, 1.08817), Vector3(0.0733554, 1.31742, 1.08817)]
-}
-
-[sub_resource type="Animation" id="Animation_uev4j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Knife:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.146244, 0, -0.0436676)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Knife:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.0733554, 1.31742, 1.08817)]
 }
 
 [sub_resource type="Animation" id="Animation_ol80d"]
@@ -100,4 +100,6 @@ libraries = {
 }
 
 [node name="Knife" parent="." instance=ExtResource("1_l7prs")]
-transform = Transform3D(0.179185, -0.189114, 0.965468, 0.883398, 0.462856, -0.0732896, -0.433013, 0.866025, 0.25, -0.146244, 0, -0.0436676)
+transform = Transform3D(0.179185, -0.189113, 0.965468, 0.883397, 0.462859, -0.0732896, -0.433015, 0.866024, 0.25, -0.146244, 0, -0.0436676)
+
+[node name="SoundPosition" type="Marker3D" parent="."]
