@@ -5,7 +5,7 @@ func _ready() -> void:
 	pass
 
 func Action_1() -> void:
-	if not action_1_state: return
+	if busy: return
 	
 	if Input.is_action_pressed("Left_Click") and not animator.is_playing():
 		var list_of_animations = animator.get_animation_list()
@@ -15,13 +15,13 @@ func Action_1() -> void:
 		print("STAB!")
 	
 func Action_2() -> void:
-	if not action_2_state: return
+	if busy: return
 	
 func Action_3() -> void:
-	if not action_3_state: return
+	if busy: return
 
 func Action_4() -> void:
-	if not action_4_state: return
+	if busy: return
 
 func play_sound():
 	var audio_player : AudioStreamPlayer3D = AudioStreamPlayer3D.new()

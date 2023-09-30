@@ -10,7 +10,7 @@ func _ready() -> void:
 	fire_timer.wait_time = rate_of_fire
 
 func Action_1() -> void:
-	if not action_1_state: return
+	if busy: return
 	
 	if weapon_data.action_type == 1:
 		if Input.is_action_pressed("Left_Click") and fire_timer.is_stopped():
@@ -23,15 +23,15 @@ func Action_1() -> void:
 			shotgun_shoot()
 	
 func Action_2() -> void:
-	if not action_2_state: return
+	if busy: return
 	if Input.is_action_just_pressed("R_key"):
 		reload()
 	
 func Action_3() -> void:
-	if not action_3_state: return
+	if busy: return
 
 func Action_4() -> void:
-	if not action_4_state: return
+	if busy: return
 
 func shoot():
 	if current_magazine > 0:
@@ -64,19 +64,17 @@ func shotgun_shoot():
 		raycaster.rotation = Vector3.ZERO
 	
 func reload():
-	weapon_system.disable_actions = true
-	if current_magazine == weapon_data.magazine_max: return
+	busy = true
+	if current_magazine == weapon_data.magazine_max:
+		busy = false
+		return
 	print("reloading!")
 	animator.play("Reload")
-	action_2_state = false
-	action_1_state = false
 	await animator.animation_finished
 	replenish_ammo()
-	weapon_system.disable_actions = false
+	busy = false
 
 func replenish_ammo():
-	action_1_state = true
-	action_2_state = true
 	print("reload finished!")
 	current_magazine = weapon_data.magazine_max
 

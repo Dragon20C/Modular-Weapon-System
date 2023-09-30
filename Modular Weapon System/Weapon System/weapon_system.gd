@@ -1,6 +1,7 @@
 class_name Weapon_System extends Node3D
 
 # Can store variables from the player here and transfer to the weapons if needed.
+var weapon_hidden : bool = false
 @onready var hand_node : Node3D = get_node("Hand")
 @onready var hand_animations : AnimationPlayer = get_node("AnimationPlayer")
 @export var raycaster : RayCast3D
@@ -26,6 +27,21 @@ func _input(event):
 		switch_weapon(weapons[weapon_index])
 	
 func _physics_process(_delta):
+	# This is for putting the weapons away.
+	if Input.is_action_just_pressed("Q_key") and !hand_animations.is_playing():
+		# we swap the bool depending if we want to take or put away
+		weapon_hidden = !weapon_hidden
+		
+		# check witch state we are in
+		if weapon_hidden:
+			disable_actions = true
+			put_away_weapon()
+		else:
+			disable_actions = false
+			take_weapon()
+			
+
+	
 	if current_weapon == null : return
 	
 	# Call actions for the current weapon
@@ -59,3 +75,18 @@ func instantiate_weapon_scene(weapon : PackedScene):
 	# Set the animationplayer from the scene to the current weapon.
 	current_weapon.animator = instantiated_scene.get_node("Animations")
 	current_weapon.sound_position = instantiated_scene.get_node("SoundPosition")
+
+func put_away_weapon():
+	#hand_animations.speed_scale = current_weapon.weapon_data.transition_speed
+	current_weapon.busy = true
+	hand_animations.play("Unequip_weapon")
+	await hand_animations.animation_finished
+	hand_node.visible = false
+
+func take_weapon():
+	#hand_animations.speed_scale = current_weapon.weapon_data.transition_speed
+	
+	hand_node.visible = true
+	hand_animations.play("Equip_weapon")
+	await hand_animations.animation_finished
+	current_weapon.busy = false
