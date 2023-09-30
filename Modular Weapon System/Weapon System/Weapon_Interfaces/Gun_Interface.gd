@@ -101,7 +101,7 @@ func play_sound():
 	var audio_player : AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 	#var random_index : int = randi_range(0,footstep_sounds.size() - 1)
 	audio_player.stream = sounds["Shoot"]
-	audio_player.pitch_scale = randf_range(0.8,1.2)
+	audio_player.pitch_scale = randf_range(0.9,1.1)
 	sound_position.add_child(audio_player)
 	audio_player.play()
 	audio_player.finished.connect(func destory(): audio_player.queue_free())

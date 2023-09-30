@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dod6c1ogl358x"
+path="res://.godot/imported/9mm Single Isolated.wav-f6de2388dd3a5c8311ea1a67d9169f58.sample"
+
+[deps]
+
+source_file="res://Sounds/Pistols/9mm Single Isolated.wav"
+dest_files=["res://.godot/imported/9mm Single Isolated.wav-f6de2388dd3a5c8311ea1a67d9169f58.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

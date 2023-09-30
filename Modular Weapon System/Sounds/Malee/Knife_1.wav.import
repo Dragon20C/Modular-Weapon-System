@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cn1yritcxx6g4"
-path="res://.godot/imported/SMG_1.wav-c77cfdea83ebbf44fb305beaa8a7f332.sample"
+uid="uid://bvhku3jhj5ab3"
+path="res://.godot/imported/Knife_1.wav-29fef5026ef6e7f6147a8cb1abdaab95.sample"
 
 [deps]
 
-source_file="res://Sounds/SMG_1.wav"
-dest_files=["res://.godot/imported/SMG_1.wav-c77cfdea83ebbf44fb305beaa8a7f332.sample"]
+source_file="res://Sounds/Knife_1.wav"
+dest_files=["res://.godot/imported/Knife_1.wav-29fef5026ef6e7f6147a8cb1abdaab95.sample"]
 
 [params]
 

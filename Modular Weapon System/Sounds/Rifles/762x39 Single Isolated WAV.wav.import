@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cp8b212yyideu"
+path="res://.godot/imported/762x39 Single Isolated WAV.wav-ee50d0c48b005beb81c4073c34092d37.sample"
+
+[deps]
+
+source_file="res://Sounds/Rifles/762x39 Single Isolated WAV.wav"
+dest_files=["res://.godot/imported/762x39 Single Isolated WAV.wav-ee50d0c48b005beb81c4073c34092d37.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
